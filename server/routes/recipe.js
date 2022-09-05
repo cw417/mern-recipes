@@ -32,8 +32,8 @@ recipeRoutes.route('/recipe/add').post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     name: req.body.name,
-    type: req.body.type,
-    info: req.body.info,
+    ingredients: req.body.ingredients,
+    instructions: req.body.instructions,
   };
   db_connect.collection('recipes').insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -48,8 +48,8 @@ recipeRoutes.route('/update/:id').post(function (req, response) {
   let newvalues = {
     $set: {
       name: req.body.name,
-      type: req.body.type,
-      info: req.body.info,
+      ingredients: req.body.ingredients,
+      instructions: req.body.instructions,
     },
   };
   db_connect
