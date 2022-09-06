@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { FiPlus, FiSearch, FiRotateCcw } from 'react-icons/fi';
 
-export default function SearchBar( addRecipe, searchRecipes, restoreRecipes ) {
+export default function SearchBar({ addRecipe, searchRecipes, restoreRecipes }) {
 
   const inputRef = useRef();
 
@@ -25,7 +25,7 @@ export default function SearchBar( addRecipe, searchRecipes, restoreRecipes ) {
   return (
     <div>
       <div>
-        <input className='inpt' placeholder='Search' />
+        <input ref={inputRef} className='inpt' placeholder='Search' />
         <button className='btn' onClick={handleAdd}><FiPlus/></button>
         <button className='btn' onClick={handleSearch}><FiSearch /></button>
         <button className='btn' onClick={handleRestore}><FiRotateCcw/></button>

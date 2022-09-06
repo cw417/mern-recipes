@@ -5,6 +5,10 @@ export default function RecipeList() {
 
   const [recipes, setRecipes] = useState([])
 
+  useEffect(() => {
+    
+  })
+
   function addRecipe(name) {
     /**
      * Adds new recipes to current recipes array.
@@ -30,7 +34,8 @@ export default function RecipeList() {
       <div className='text-3xl mt-2'>
         Recipes
       </div>
-      <AddSearchBar />
+      <AddSearchBar
+        addRecipe={addRecipe} />
       <div>{recipeList()}</div>
     </div>
   )
