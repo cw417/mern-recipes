@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react'
+import AddSearchBar from './AddSearchBar'
 
 export default function RecipeList() {
 
   const [recipes, setRecipes] = useState([])
+
+  function addRecipe(name) {
+    /**
+     * Adds new recipes to current recipes array.
+     */
+    const newRecipes = [...recipes, {
+      name: name,
+      instructions: [],
+      ingredients: []
+    }];
+    setRecipes(newRecipes);
+  }
 
   function recipeList() {
     return recipes.map((recipe, index) => {
@@ -17,6 +30,7 @@ export default function RecipeList() {
       <div className='text-3xl mt-2'>
         Recipes
       </div>
+      <AddSearchBar />
       <div>{recipeList()}</div>
     </div>
   )
