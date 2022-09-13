@@ -9,7 +9,7 @@ export default function Navbar() {
           <div>Home</div>
         </NavLink>
         <NavLink className='nav-link' to='/create'>
-          <div>Edit</div>
+          <div>Create</div>
         </NavLink>
       </nav>
     </div>
