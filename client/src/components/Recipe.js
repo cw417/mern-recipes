@@ -7,12 +7,12 @@ export default function Recipe({ recipe }) {
     <div>
       <div>
         <IngredientList
-          recipe={recipe}
-         />
+          ingredients={recipe.ingredients}
+        />
       </div>
       <div>
         <InstructionList
-          recipe={recipe}
+          instructions={recipe.instructions}
         />
       </div>
     </div>
