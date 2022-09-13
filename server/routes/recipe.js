@@ -4,7 +4,7 @@ const dbo = require('../db/conn');
 const ObjectId = require('mongodb').ObjectId;
  
 // Get a list of all the recipes.
-recipeRoutes.route('/recipe').get(function (req, res) {
+recipeRoutes.route('/recipes').get(function (req, res) {
   let db_connect = dbo.getDb('reviews');
   db_connect
     .collection('recipes')

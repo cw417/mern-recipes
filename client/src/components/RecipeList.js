@@ -1,31 +1,43 @@
-import React, { useState, useEffect } from 'react'
-import AddSearchBar from './AddSearchBar'
+import React, { useState, useEffect } from 'react';
+import AddSearchBar from './AddSearchBar';
+import Recipe from './Recipe';
 
 export default function RecipeList() {
 
   const [recipes, setRecipes] = useState([])
+  const [filter, setFilter] = useState(false)
 
+  // Get recipes from the server
   useEffect(() => {
+    if (!filter) {
+      async function getRecipes() {
+        const response = await fetch(`http://localhost:5000/recipes/`);
     
-  })
-
-  function addRecipe(name) {
-    /**
-     * Adds new recipes to current recipes array.
-     */
-    const newRecipes = [...recipes, {
-      name: name,
-      instructions: [],
-      ingredients: []
-    }];
-    setRecipes(newRecipes);
-  }
-
+        if (!response.ok) {
+          const message = `An error occurred: ${response.statusText}`;
+          window.alert(message);
+          return;
+        }
+    
+        const recipes = await response.json();
+        setRecipes(recipes);
+      }
+    
+      getRecipes();
+    
+      return;
+    }
+  }, [recipes.length, filter]);
+  
   function recipeList() {
+    /**
+     * Map recipes to a list of recipe components.
+     */
     return recipes.map((recipe, index) => {
-      <div key={index}>
-        {recipe.name}
-      </div>
+      <Recipe 
+        key={index}
+        recipe={recipe}
+      />
     })
   }
 
@@ -34,8 +46,7 @@ export default function RecipeList() {
       <div className='text-3xl mt-2'>
         Recipes
       </div>
-      <AddSearchBar
-        addRecipe={addRecipe} />
+      <AddSearchBar />
       <div>{recipeList()}</div>
     </div>
   )
