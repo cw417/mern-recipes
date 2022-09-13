@@ -2,9 +2,43 @@ import React, { useState, useEffect } from 'react';
 import AddSearchBar from './AddSearchBar';
 import Recipe from './Recipe';
 
+const initialState = 
+    [{
+      name: "Caprese salad", 
+      ingredients: [ 
+        {name: "Tomatoes", amount: "2, sliced"},
+        {name: "Mozzarella, fresh", amount: "4 slices"},
+        {name: "Basil, fresh", amount: "8 leaves"},
+        {name: "Olive oil", amount: "drizzle"},
+        {name: "Salt/pepper", amount: "to taste"},
+      ], 
+      instructions: [
+        {instruction: "Slice tomatoes and mozzarella. Add to bowl."},
+        {instruction: "Wash and chop the fresh basil, and add to bowl."},
+        {instruction: "Add a drizzle of olive oil, then salt, and pepper to taste."},
+      ], 
+      selected: false, 
+      editing: false
+    },
+    {
+      name: "Strawberry Banana Smoothie", 
+      ingredients: [ 
+        {name: "Bananas", amount: "2, peeled"},
+        {name: "Strawberries", amount: "1/2 C"},
+        {name: "Milk", amount: "6oz"},
+      ], 
+      instructions: [
+        {instruction: "Peel bananas and add all ingredients to blender."},
+        {instruction: "Blend to desired consistency."},
+        {instruction: "If you would like to add protein powder, do so while blending."},
+      ], 
+      selected: false, 
+      editing: false
+    }]
+
 export default function RecipeList() {
 
-  const [recipes, setRecipes] = useState([])
+  const [recipes, setRecipes] = useState(initialState)
   const [filter, setFilter] = useState(false)
 
   // Get recipes from the server
