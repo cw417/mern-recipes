@@ -43,6 +43,7 @@ export default function RecipeList() {
 
   // Get recipes from the server
   useEffect(() => {
+    console.log(recipes)
     if (!filter) {
       async function getRecipes() {
         const response = await fetch(`http://localhost:5000/recipes/`);
@@ -63,6 +64,29 @@ export default function RecipeList() {
     }
   }, [recipes.length, filter]);
   
+  async function addRecipe(name) {
+
+    const newRecipe = {
+      name: name,
+      ingredients: [],
+      instructions: []
+    }
+
+    console.log(`Adding: ${newRecipe.name}`);
+
+    await fetch('http://localhost:5000/recipe/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newRecipe),
+    })
+    .catch(error => {
+      window.alert(error);
+      return;
+    });
+  }
+  
   function recipeList() {
     /**
      * Map recipes to a list of recipe components.
@@ -80,7 +104,9 @@ export default function RecipeList() {
       <div className='text-3xl mt-2'>
         Recipes
       </div>
-      <AddSearchBar />
+      <AddSearchBar
+        addRecipe={addRecipe}
+      />
       <div>{recipeList()}</div>
     </div>
   )

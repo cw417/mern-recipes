@@ -1,33 +1,14 @@
 import React, { useRef } from 'react';
 import { FiPlus, FiSearch, FiRotateCcw } from 'react-icons/fi';
 
-export default function SearchBar({ searchRecipes, restoreRecipes }) {
+export default function SearchBar({ addRecipe, searchRecipes, restoreRecipes }) {
 
   const inputRef = useRef();
 
-  async function onSubmit(e) {
+  async function handleAdd(e) {
     e.preventDefault();
-
-    const newRecipe = {
-      name: inputRef.current.value,
-      ingredients: [],
-      instructions: []
-    }
-
-    console.log(`Adding: ${newRecipe.name}`);
-
-    await fetch('http://localhost:5000/recipe/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newRecipe),
-    })
-    .catch(error => {
-      window.alert(error);
-      return;
-    });
-
+    const name = inputRef.current.value;
+    addRecipe(name);
     inputRef.current.value = null;
   }
 
@@ -48,7 +29,7 @@ export default function SearchBar({ searchRecipes, restoreRecipes }) {
     <div>
       <div>
         <input ref={inputRef} className='inpt' placeholder='Add/Search' />
-        <button className='btn' onClick={onSubmit}><FiPlus/></button>
+        <button className='btn' onClick={handleAdd}><FiPlus/></button>
         <button className='btn' onClick={handleSearch}><FiSearch /></button>
         <button className='btn' onClick={handleRestore}><FiRotateCcw/></button>
       </div>
