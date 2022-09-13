@@ -9,17 +9,20 @@ export default function SearchBar({ addRecipe, searchRecipes, restoreRecipes }) 
     const name = inputRef.current.value;
     addRecipe(name);
     console.log(`Adding: ${name}`);
+    inputRef.current.value = null;
   }
 
   function handleSearch(){
     const keyword = inputRef.current.value;
     searchRecipes(keyword);
     console.log(`Searching for: ${keyword}`);
+    inputRef.current.value = null;
   }
 
   function handleRestore(){
     restoreRecipes();
     console.log(`Restoring.`);
+    inputRef.current.value = null;
   }
 
   return (
