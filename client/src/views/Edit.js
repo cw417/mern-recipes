@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router';
-import EditName from '../components/EditName';
 import Ingredient from '../components/Ingredient';
 import Instruction from '../components/Instruction';
 
