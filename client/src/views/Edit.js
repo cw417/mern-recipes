@@ -58,6 +58,20 @@ export default function Edit() {
     setRecipe(newRecipe);
   }
 
+  async function onSubmit(e) {
+    e.preventDefault();
+    const editedRecipe = recipe;
+    await fetch(`http://localhost:5000/update/${params.id}`, {
+      method: "POST",
+      body: JSON.stringify(editedRecipe),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+  
+    navigate("/");
+  }
+
   function setIngredients(recipe) {
     return (
       recipe.ingredients.map((ingredient, index) => {
@@ -100,6 +114,9 @@ export default function Edit() {
           </div>
           <div>
             {setInstructions(recipe)}
+          </div>
+          <div>
+            <button className='btn' onClick={onSubmit}>Update</button>
           </div>
         </div>
       </div>
