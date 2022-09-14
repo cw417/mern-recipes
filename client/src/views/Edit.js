@@ -26,10 +26,7 @@ export default function Edit() {
         return;
       }
 
-      console.log(currentRecipe)
-
       setRecipe(currentRecipe)
-      
     }
   
     fetchData();
