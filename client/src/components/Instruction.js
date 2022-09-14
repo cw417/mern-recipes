@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default function Instruction({ Instruction }) {
+export default function Instruction({ instruction }) {
   return (
-    <div>Instruction</div>
+    <div>
+      <div>
+        <span>{instruction}</span>
+      </div>
+    </div>
   )
 }

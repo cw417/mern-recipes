@@ -1,7 +1,12 @@
 import React from 'react'
 
-export default function Ingredient({ Ingredient }) {
+export default function Ingredient({ ingredient }) {
   return (
-    <div>Ingredient</div>
+    <div>
+      <div>
+        <span>{ingredient.amount}</span>
+        <span>{ingredient.name}</span>
+      </div>
+    </div>
   )
 }

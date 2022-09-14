@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import IngredientList from './IngredientList';
-import InstructionList from './InstructionList';
 import { useNavigate } from 'react-router';
 import { FiEdit } from 'react-icons/fi';
 
@@ -26,6 +24,33 @@ export default function Recipe({ recipe }) {
     navigate(`/edit/${recipe._id}`);
   }
 
+  function ingredientList() {
+    return (
+      recipe.ingredients.map((ingredient, index) => {
+      return (
+        <div key={index}>
+          <div className='flex flex-row ml-4'>
+            <span className='mr-4'>{ingredient.amount}</span>
+            <span>{ingredient.name}</span>
+          </div>
+        </div>
+      )
+  }));
+  }
+
+  function instructionList() {
+    let count = 0;
+    return (
+      recipe.instructions.map((instruction, index) => {
+        count++;
+        return (
+          <div key={index} className='flex flex-row'>
+            <span className='ml-4 mr-3'>{count}.</span><span>{instruction}</span>
+          </div>
+        )
+      })
+    )
+  }
 
   return (
     <div onClick={handleSelect} className='my-2'>
@@ -33,15 +58,11 @@ export default function Recipe({ recipe }) {
       <div className='ml-4' style={{display:display}}>
         <div>
           <div>Ingredients</div>
-          <IngredientList
-            ingredients={recipe.ingredients}
-          />
+          <div>{ingredientList()}</div>
         </div>
         <div>
           <div>Instructions</div>
-          <InstructionList
-            instructions={recipe.instructions}
-          />
+          <div>{instructionList()}</div>
         </div>
         <div>
           <button className='btn' onClick={handleEdit}><FiEdit /></button>
