@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import SearchBar from './SearchBar';
-import Recipe from './Recipe';
+import SearchBar from '../components/SearchBar';
+import Recipe from '../components/Recipe';
 
 export default function RecipeList() {
 

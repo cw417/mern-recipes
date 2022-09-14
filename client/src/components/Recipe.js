@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import IngredientList from './IngredientList';
 import InstructionList from './InstructionList';
+import { useNavigate } from 'react-router';
 import { FiEdit } from 'react-icons/fi';
 
 export default function Recipe({ recipe }) {
 
-  const [ display, setDisplay ] = useState('none')
+  const [ display, setDisplay ] = useState('none');
+  const navigate = useNavigate();
   
   function handleSelect() {
     /**
@@ -18,6 +20,10 @@ export default function Recipe({ recipe }) {
       setDisplay('none')
       console.log('unselected ' + recipe.name)
     }
+  }
+
+  function handleEdit() {
+    navigate(`/edit/${recipe._id}`);
   }
 
 
@@ -38,7 +44,7 @@ export default function Recipe({ recipe }) {
           />
         </div>
         <div>
-          <button className='btn'><FiEdit /></button>
+          <button className='btn' onClick={handleEdit}><FiEdit /></button>
         </div>
       </div>
     </div>
