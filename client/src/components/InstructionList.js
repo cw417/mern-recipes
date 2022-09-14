@@ -10,10 +10,7 @@ export default function InstructionList({ instructions }) {
       count++;
       return (
         <div key={index} className='flex flex-row'>
-          <button 
-            className='btn'
-          ><FiMinus /></button>
-          <span className='mx-4'>{count}. {instruction.instruction}</span>
+          <span className='ml-4 mr-3'>{count}.</span><span>{instruction}</span>
         </div>
       )
     })

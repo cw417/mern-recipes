@@ -36,6 +36,7 @@ export default function RecipeList() {
         <Recipe 
           key={index}
           recipe={recipe}
+          className='hover:bg-blue-500'
         />
       )
     })
