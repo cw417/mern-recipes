@@ -45,6 +45,28 @@ export default function Create({ addRecipe }) {
   
     navigate('/');
   }
+  
+  function handleIngredientKeyPress(event, func) {
+    /**
+     * Calls 'addIngredient' when 'Enter' key is pressed.
+     * The keycode for 'Enter' is 13.
+     * @param event  Keypress event watching for 'Enter' key.
+     */
+    if (event.keyCode === 13 || event.which === 13) {
+      addIngredient();
+    }
+  }
+
+  function handleInstructionKeyPress(event, func) {
+    /**
+     * Calls 'addInstruction' when 'Enter' key is pressed.
+     * The keycode for 'Enter' is 13.
+     * @param event  Keypress event watching for 'Enter' key.
+     */
+    if (event.keyCode === 13 || event.which === 13) {
+      addInstruction();
+    }
+  }
 
   function addIngredient() {
     const amount = (ingredientAmountRef.current.value === '') ? "1" : ingredientAmountRef.current.value;
@@ -94,11 +116,11 @@ export default function Create({ addRecipe }) {
         </div>
         <div>
           <input className='inpt w-1/12' ref={ingredientAmountRef} type='text' placeholder='Amt' />
-          <input className='inpt w-1/3' ref={ingredientNameRef} type='text' placeholder='Ingredient' />
+          <input className='inpt w-1/3' ref={ingredientNameRef} type='text' placeholder='Ingredient' onKeyPress={handleIngredientKeyPress} />
           <button className='btn' onClick={addIngredient}><FiPlus /></button>
         </div>
         <div>
-          <input className='inpt w-5/12' ref={instructionRef} type='text' placeholder='Instruction' />
+          <input className='inpt w-5/12' ref={instructionRef} type='text' placeholder='Instruction' onKeyPress={handleInstructionKeyPress}/>
           <button className='btn' onClick={addInstruction}><FiPlus /></button>
         </div>
         <button className='btn' onClick={handleCreate}>Create</button>
