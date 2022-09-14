@@ -40,7 +40,7 @@ export default function Edit() {
      * Removes the old instruction and inserts the new instruction
      * at the same index.
      */
-    const index = recipe.instructions.indexOf(oldIngredient);
+    const index = recipe.ingredients.indexOf(oldIngredient);
     const newRecipe = {...recipe};
     newRecipe.ingredients.splice(index, 1, newIngredient);
     setRecipe(newRecipe);
