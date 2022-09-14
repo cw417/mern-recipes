@@ -34,12 +34,39 @@ export default function Edit() {
     return;
   }, [params.id, navigate]);
 
+  function updateIngredients(oldIngredient, newIngredient) {
+    /**
+     * Update the instructions array of the recipe.
+     * Removes the old instruction and inserts the new instruction
+     * at the same index.
+     */
+    const index = recipe.instructions.indexOf(oldIngredient);
+    const newRecipe = {...recipe};
+    newRecipe.ingredients.splice(index, 1, newIngredient);
+    setRecipe(newRecipe);
+  }
+
+  function updateInstructions(oldInstruction, newInstruction) {
+    /**
+     * Update the instructions array of the recipe.
+     * Removes the old instruction and inserts the new instruction
+     * at the same index.
+     */
+    const index = recipe.instructions.indexOf(oldInstruction);
+    const newRecipe = {...recipe};
+    newRecipe.instructions.splice(index, 1, newInstruction);
+    setRecipe(newRecipe);
+  }
+
   function setIngredients(recipe) {
     return (
       recipe.ingredients.map((ingredient, index) => {
         return (
           <div key={index}>
-            <Ingredient ingredient={ingredient} />
+            <Ingredient
+              ingredient={ingredient}
+              updateIngredients={updateIngredients}
+            />
           </div>
         )
       })
@@ -51,7 +78,10 @@ export default function Edit() {
       recipe.instructions.map((instruction, index) => {
         return (
           <div key={index}>
-            <Instruction instruction={instruction} />
+            <Instruction
+              instruction={instruction}
+              updateInstructions={updateInstructions}
+            />
           </div>
         )
       })
@@ -61,9 +91,9 @@ export default function Edit() {
   if (recipe) {
     return (
       <div>
-        <div>
-          <div>
-            {recipe.name}
+        <div className='m-4'>
+          <div className='text-3xl flex flex-col items-center'>
+            <span>{recipe.name}</span>
           </div>
           <div>
             {setIngredients(recipe)}

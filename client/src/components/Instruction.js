@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { FiCheck } from 'react-icons/fi';
 
-export default function Instruction({ instruction }) {
+export default function Instruction({ instruction, updateInstructions }) {
   
   const [editing, setEditing] = useState(false)
   const [displayText, setDisplayText] = useState('block');
@@ -35,15 +35,23 @@ export default function Instruction({ instruction }) {
     setEditing(newEditing);
   }
 
+  function handleUpdate() {
+    const currentInstruction = instructionRef.current.value;
+    if (currentInstruction !== instruction) {
+      updateInstructions(instruction, instructionRef.current.value);
+    }
+    handleSelect();
+  }
+
   return (
-    <div onClick={handleSelect}>
-      <div style={{display:displayText}} onClick={toggleEditing}>
+    <div>
+      <div style={{display:displayText}} onClick={handleSelect}>
         <span>{instruction}</span>
       </div>
       <div style={{display:displayInput}}>
         <input className='inpt' ref={instructionRef} />
         <span>
-          <button className='btn' onClick={toggleEditing}><FiCheck /></button>
+          <button className='btn' onClick={handleUpdate}><FiCheck /></button>
         </span>
       </div>
     </div>
