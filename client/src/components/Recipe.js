@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import IngredientList from './IngredientList';
 import InstructionList from './InstructionList';
+import { FiEdit } from 'react-icons/fi';
 
 export default function Recipe({ recipe }) {
 
@@ -21,8 +22,8 @@ export default function Recipe({ recipe }) {
 
 
   return (
-    <div onClick={handleSelect}>
-      {recipe.name}
+    <div onClick={handleSelect} className='my-2'>
+          {recipe.name}
       <div className='ml-4' style={{display:display}}>
         <div>
           <div>Ingredients</div>
@@ -35,6 +36,9 @@ export default function Recipe({ recipe }) {
           <InstructionList
             instructions={recipe.instructions}
           />
+        </div>
+        <div>
+          <button className='btn'><FiEdit /></button>
         </div>
       </div>
     </div>

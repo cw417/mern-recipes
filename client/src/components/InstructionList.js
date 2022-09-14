@@ -1,5 +1,4 @@
 import React from 'react'
-import { FiMinus } from 'react-icons/fi';
 
 export default function InstructionList({ instructions }) {
 
