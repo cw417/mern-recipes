@@ -5,6 +5,7 @@ import InstructionList from './InstructionList';
 export default function Recipe({ recipe }) {
   return (
     <div>
+      {recipe.name}
       <div>
         <IngredientList
           ingredients={recipe.ingredients}
