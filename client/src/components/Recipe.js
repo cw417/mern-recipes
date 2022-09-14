@@ -9,7 +9,7 @@ export default function Recipe({ recipe }) {
   
   function handleSelect() {
     /**
-     * Toggles display of the RecipeInfo component on/off.
+     * Toggles display of the recipe info and edit button.
      */
     if (display === 'none') {
       setDisplay('block')
@@ -21,10 +21,16 @@ export default function Recipe({ recipe }) {
   }
 
   function handleEdit() {
+    /**
+     * Navigate to edit page for the selected recipe.
+     */
     navigate(`/edit/${recipe._id}`);
   }
 
   function ingredientList() {
+    /**
+     * Create list of recipe ingredients.
+     */
     return (
       recipe.ingredients.map((ingredient, index) => {
       return (
@@ -39,6 +45,9 @@ export default function Recipe({ recipe }) {
   }
 
   function instructionList() {
+    /**
+     * Create numbered list of recipe instructions.
+     */
     let count = 0;
     return (
       recipe.instructions.map((instruction, index) => {
