@@ -9,6 +9,7 @@ export default function RecipeList() {
   const [filter, setFilter] = useState(false);
 
   useEffect(() => {
+    console.log(filter)
     if (!filter) {
       async function getRecipes() {
         const response = await fetch(`http://localhost:5000/recipes/`);
@@ -86,8 +87,13 @@ export default function RecipeList() {
       </div>
       <SearchBar searchRecipes={searchRecipes} toggleFilter={toggleFilter} />
       <div className='flex flex-row w-full'>
-        <div className='w-1/3 bg-yellow-100 rounded-xl mx-4'>
-          <Sidebar recipes={recipes} searchRecipes={searchRecipes} toggleFilter={toggleFilter} />
+        <div className='h-1/2 w-1/3 bg-yellow-100 rounded-xl mx-4'>
+          <Sidebar
+            recipes={recipes}
+            searchRecipes={searchRecipes}
+            filter={filter}
+            toggleFilter={toggleFilter}
+          />
         </div>
         <div className='flex flex-col w-full mx-12'>{recipeList()}</div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FiRotateCcw } from 'react-icons/fi';
 
-export default function Sidebar({ recipes, searchRecipes, toggleFilter }) {
+export default function Sidebar({ recipes, searchRecipes, filter, toggleFilter }) {
 
   const [fullRecipes, setFullRecipes] = useState(recipes);
 
@@ -24,11 +24,16 @@ export default function Sidebar({ recipes, searchRecipes, toggleFilter }) {
       return;
   });
 
+  function handleRestore() {
+    if (filter) toggleFilter();
+  }
+  
   function sidebarList() {
     return (
       fullRecipes.map((recipe, index) => {
         return (
           <div 
+            key={index}
             className='my-1'
             onClick={()=> searchRecipes(recipe.name)}
           >
@@ -40,9 +45,9 @@ export default function Sidebar({ recipes, searchRecipes, toggleFilter }) {
   }
 
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center m-4'>
       <div className='text-xl mb-2'>
-        <button className='btn' onClick={toggleFilter}><FiRotateCcw/></button>
+        <button className='btn' onClick={handleRestore}><FiRotateCcw/></button>
       </div>
       <div className='flex flex-col items-center'>{sidebarList()}</div>
     </div>
