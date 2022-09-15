@@ -24,7 +24,6 @@ export default function RecipeList() {
     
       getRecipes();
     
-      console.log(recipes)
       return;
     }
   }, [recipes.length, filter]);
@@ -57,7 +56,6 @@ export default function RecipeList() {
      */
     let found = false
     recipe.ingredients.forEach(ingredient => {
-      console.log(`searching for ${query} in ${recipe.name}`)
       if (ingredient.name.toLowerCase().includes(query)) {
         found = true
       }

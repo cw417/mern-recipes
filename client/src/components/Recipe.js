@@ -13,10 +13,8 @@ export default function Recipe({ recipe }) {
      */
     if (display === 'none') {
       setDisplay('block')
-      console.log('selected ' + recipe.name)
     } else {
       setDisplay('none')
-      console.log('unselected ' + recipe.name)
     }
   }
 
@@ -63,7 +61,7 @@ export default function Recipe({ recipe }) {
 
   return (
     <div onClick={handleSelect} className='my-2'>
-          {recipe.name}
+        <span>{recipe.name}</span>
       <div className='ml-4' style={{display:display}}>
         <div>
           <div>Ingredients</div>
