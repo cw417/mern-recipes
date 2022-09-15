@@ -86,10 +86,10 @@ export default function RecipeList() {
       </div>
       <SearchBar searchRecipes={searchRecipes} toggleFilter={toggleFilter} />
       <div className='flex flex-row w-full'>
-        <div className='w-1/3 bg-yellow-100 rounded-xl ml-2 mr-4'>
+        <div className='w-1/3 bg-yellow-100 rounded-xl mx-4'>
           <Sidebar recipes={recipes} searchRecipes={searchRecipes} toggleFilter={toggleFilter} />
         </div>
-        <div className='flex flex-col w-full'>{recipeList()}</div>
+        <div className='flex flex-col w-full mx-12'>{recipeList()}</div>
       </div>
     </div>
   )
