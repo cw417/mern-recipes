@@ -14,8 +14,6 @@ export default function Create({ addRecipe }) {
 
   const navigate = useNavigate();
 
-  // counter for numbering the instructions
-  let count = 0;
 
   async function handleCreate() {
 
@@ -97,6 +95,7 @@ export default function Create({ addRecipe }) {
   }
 
   function instructionsList() {
+    let count = 0;
     return (
       instructions.map((instruction, index) => {
         count++;
