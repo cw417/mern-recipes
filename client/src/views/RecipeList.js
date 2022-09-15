@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
 import Recipe from '../components/Recipe';
+import Sidebar from '../components/Sidebar';
 
 export default function RecipeList() {
 
@@ -84,7 +85,12 @@ export default function RecipeList() {
         Recipes
       </div>
       <SearchBar searchRecipes={searchRecipes} toggleFilter={toggleFilter} />
-      <div>{recipeList()}</div>
+      <div className='flex flex-row'>
+        <div>
+          <Sidebar />
+        </div>
+        <div>{recipeList()}</div>
+      </div>
     </div>
   )
 }
