@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router';
 import Ingredient from '../components/Ingredient';
 import Instruction from '../components/Instruction';
+import { FiMinus } from 'react-icons/fi';
 
 export default function Edit() {
   const [recipe, setRecipe] = useState(null);
@@ -72,6 +73,13 @@ export default function Edit() {
     navigate("/");
   }
 
+  async function deleteReview() {
+    await fetch(`http://localhost:5000/${params.id}`, {
+      method: "DELETE"
+    });
+    navigate('/');
+  }
+
   function setIngredients(recipe) {
     return (
       recipe.ingredients.map((ingredient, index) => {
@@ -106,8 +114,13 @@ export default function Edit() {
     return (
       <div>
         <div className='m-4'>
-          <div className='text-3xl flex flex-col items-center'>
-            <span>{recipe.name}</span>
+          <div className='flex flex-col items-center'>
+            <div className='flex items-center'>
+              <span className='text-3xl' >{recipe.name}</span>
+              <span>
+                <button className='btn' onClick={deleteReview}><FiMinus /></button>
+              </span>
+            </div>
           </div>
           <div>
             {setIngredients(recipe)}
